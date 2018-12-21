@@ -1,0 +1,15 @@
+dn: olcDatabase={2}hdb,cn=config
+changetype: modify
+add: olcSyncRepl
+olcSyncRepl: rid=002
+ provider=ldaps://192.168.20.223:636/
+ bindmethod=simple
+ binddn="cn=xiodiadmin,dc=xiodi,dc=cn"
+ credentials=xiodi.cn
+ searchbase="dc=xiodi,dc=cn"
+ scope=sub
+ schemachecking=on
+ type=refreshAndPersist
+ retry="5 5 300 +"
+ attrs="*,+"
+ interval=00:00:00:10
