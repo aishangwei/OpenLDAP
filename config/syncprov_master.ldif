@@ -1,5 +1,11 @@
+# add module
+dn: cn=module,cn=config
+objectClass: olcModuleList
+cn: module
+olcModulePath: /usr/lib64/openldap
+olcModuleLoad: syncprov.la
 
-
+# config syncprov
 dn: olcOverlay=syncprov,olcDatabase={2}hdb,cn=config
 objectClass: olcOverlayConfig
 objectClass: olcSyncProvConfig
