@@ -1,0 +1,12 @@
+
+dn: uid=loginname,ou=people,dc=xiodi,dc=cn
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: mingxing
+sn: xing
+userPassword: {SSHA}SzFSSlY43wSd91e7No9b4Y/sbrARuFBB  
+loginShell: /bin/bash
+uidNumber: 1601
+gidNumber: 500
+homeDirectory: /home/jackzang
