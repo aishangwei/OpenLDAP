@@ -12,3 +12,7 @@ objectClass: olcSyncProvConfig
 olcOverlay: syncprov
 olcSpCheckpoint: 100 10
 olcSpSessionLog: 100
+
+# add index
+dn: olcDatabase={2}hdb,cn=config
+olcDbIndex: entryCSN,entryUUID eq
