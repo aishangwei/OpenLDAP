@@ -1,6 +1,19 @@
+# add module
+dn: cn=module,cn=config
+objectClass: olcModuleList
+cn: module
+olcModulePath: /usr/lib64/openldap
+olcModuleLoad: syncprov.la
+
+# config syncprov
+dn: olcOverlay=syncprov,olcDatabase={2}hdb,cn=config
+objectClass: olcOverlayConfig
+objectClass: olcSyncProvConfig
+olcOverlay: syncprov
+
+# add index
 dn: olcDatabase={2}hdb,cn=config
-changetype: modify
-add: olcSyncRepl
+olcDbIndex: entryCSN,entryUUID eq
 olcSyncRepl: rid=002
   provider=ldaps://192.168.20.223:636/
   bindmethod=simple
