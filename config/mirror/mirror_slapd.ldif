@@ -189,7 +189,7 @@ olcSyncRepl: rid=001
   attrs="*,+"
   interval=00:00:00:10
 
-dn: olcOverlay=syncprov,olcDatabase={2}hdb,cn=config
+dn: olcOverlay=syncprov,olcDatabase=hdb,cn=config
 objectClass: olcOverlayConfig
 objectClass: olcSyncProvConfig
 olcOverlay: syncprov
