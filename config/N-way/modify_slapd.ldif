@@ -1,0 +1,27 @@
+# 本文件是否作为怎样修改配置的一个参考，并不是完整的
+# 修改操作
+dn: cn=config
+changetype: modify
+olcServerID: 1 ldaps://c720227.xiodi.cn
+olcServerID: 2 ldaps://c720228.xiodi.cn
+
+# 添加操作
+dn: olcOverlay=syncprov,olcDatabase={0}config,cn=config
+changetype: add
+objectClass: olcOverlayConfig
+objectClass: olcSyncProvConfig
+olcOverlay: syncprov
+
+# 添加多个属性操作
+dn: olcDatabase={0}config,cn=config
+changetype: modify
+add: olcSyncRepl
+olcSyncRepl: rid=001 provider=ldaps://c720227.xiodi.cn binddn="cn=config" bindmethod=simple
+credentials=secret searchbase="cn=config" type=refreshAndPersist
+retry="5 5 300 5" timeout=1
+olcSyncRepl: rid=002 provider=ldaps://c720228.xiodi.cn binddn="cn=config" bindmethod=simple
+credentials=secret searchbase="cn=config" type=refreshAndPersist
+retry="5 5 300 5" timeout=1
+-
+add: olcMirrorMode
+olcMirrorMode: TRUE
