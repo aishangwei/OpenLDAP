@@ -160,6 +160,7 @@ olcRootPW: {SSHA}uH19COO/iEnrh6r14rZeAbTBRDMv2YPu
 olcDbDirectory:	/var/lib/ldap
 olcDbIndex: objectClass eq,pres
 olcDbIndex: ou,cn,mail,surname,givenname eq,pres,sub
+olcDbIndex: entryCSN,entryUUID eq
 olcMirrorMode: on
 olcSyncRepl: rid=001
   provider=ldap://192.168.20.223:389/
