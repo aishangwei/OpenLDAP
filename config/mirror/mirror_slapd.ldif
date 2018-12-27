@@ -8,14 +8,14 @@ objectClass: olcGlobal
 cn: config
 olcArgsFile: /var/run/openldap/slapd.args
 olcPidFile: /var/run/openldap/slapd.pid
+olcDisallows: bind_anon
 #
 # TLS settings
 #
 olcTLSCACertificateFile: /etc/openldap/certs/cacert.pem
-olcTLSCertificateFile: /etc/openldap/certs/openldapcert2.pem
-olcTLSCertificateKeyFile: /etc/openldap/certs/openldapkey2.pem
-olcTLSVerifyClient: never
-olcServerID: 2
+olcTLSCertificateFile: /etc/openldap/certs/openldapcert.pem
+olcTLSCertificateKeyFile: /etc/openldap/certs/openldapkey.pem
+olcLogLevel: stats
 #
 # Do not enable referrals until AFTER you have a working directory
 # service AND an understanding of referrals.
@@ -28,7 +28,7 @@ olcServerID: 2
 #	Require 64-bit encryption for simple bind
 #
 #olcSecurity: ssf=1 update_ssf=112 simple_bind=64
-olcLogLevel: stats
+
 
 #
 # Load dynamic backend modules:
@@ -94,6 +94,7 @@ include: file:///etc/openldap/schema/misc.ldif
 include: file:///etc/openldap/schema/nis.ldif
 include: file:///etc/openldap/schema/openldap.ldif
 include: file:///etc/openldap/schema/pmi.ldif
+include: file:///etc/openldap/schema/ppolicy.ldif
 
 #
 # Frontend settings
@@ -103,6 +104,18 @@ dn: olcDatabase=frontend,cn=config
 objectClass: olcDatabaseConfig
 objectClass: olcFrontendConfig
 olcDatabase: frontend
+olcAccess: to attrs=userPassword,shadowLastChange
+       by  dn="cn=xiodiadmin,dc=xiodi,dc=cn" write
+       by  dn.children="ou=Admin,dc=xiodi,dc=cn" write
+       by  anonymous auth
+       by  self  write
+       by  *  none
+olcAccess: to dn.subtree="dc=xiodi,dc=cn"
+       by  dn="cn=xiodiadmin,dc=xiodi,dc=cn" write
+       by  dn="cn=syncuser1,ou=Admin,dc=xiodi,dc=cn" read
+       by  set="[cn=ldapadmin,ou=Admin,dc=xiodi,dc=cn]/memberUid & user/uid" write
+       by * none
+olcAccess: to dn.subtree="" by * read
 #
 # Sample global access control policy:
 #	Root DSE: allow anyone to read it
@@ -133,9 +146,10 @@ olcDatabase: frontend
 dn: olcDatabase=config,cn=config
 objectClass: olcDatabaseConfig
 olcDatabase: config
-olcAccess: to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,c
- n=auth" manage by * none
-
+olcAccess: to * 
+     by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth" manage 
+     by set="[cn=configadmin,ou=Admin,dc=xiodi,dc=cn]/memberUid & user/uid" write     
+     by * none
 #
 # Server status monitoring
 #
@@ -147,25 +161,24 @@ olcAccess: to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,c
  n=auth" read by dn.base="cn=Manager,dc=my-domain,dc=com" read by * none
 
 #
-# Backend database definitions
+# Backend database do'bianbao'bianefinitions
 #
-
 dn: olcDatabase=hdb,cn=config
 objectClass: olcDatabaseConfig
 objectClass: olcHdbConfig
 olcDatabase: hdb
 olcSuffix: dc=xiodi,dc=cn
 olcRootDN: cn=xiodiadmin,dc=xiodi,dc=cn
-olcRootPW: {SSHA}uH19COO/iEnrh6r14rZeAbTBRDMv2YPu
+olcRootPW: {SSHA}PdZhcNt0dhm/nNFyGFecT3Ro7Trw7XBv
 olcDbDirectory:	/var/lib/ldap
 olcDbIndex: objectClass eq,pres
 olcDbIndex: ou,cn,mail,surname,givenname eq,pres,sub
 olcDbIndex: entryCSN,entryUUID eq
 olcMirrorMode: on
 olcSyncRepl: rid=001
-  provider=ldap://192.168.20.223:389/
+  provider=ldaps://c720228.xiodi.cn:636/
   bindmethod=simple
-  binddn="cn=xiodiadmin,dc=xiodi,dc=cn"
+  binddn="cn=syncuser1,ou=Admin,dc=xiodi,dc=cn"
   credentials="xiodi.cn"
   searchbase="dc=xiodi,dc=cn"
   scope=sub
