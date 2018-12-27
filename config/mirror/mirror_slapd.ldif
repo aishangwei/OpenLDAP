@@ -162,6 +162,7 @@ olcAccess: to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,c
 
 #
 # Backend database do'bianbao'bianefinitions
+# 注意修改rid,provider
 #
 dn: olcDatabase=hdb,cn=config
 objectClass: olcDatabaseConfig
