@@ -1,0 +1,46 @@
+dn: ou=pwpolicies,dc=xiodi,dc=cn
+objectClass: organizationalUnit
+ou: pwpolicies
+
+cn: default
+objectClass: pwdPolicy
+objectClass: person
+pwdAllowUserChange: TRUE
+pwdAttribute: userPassword
+pwdExpireWarning: 259200
+pwdFailureCountInterval: 0
+pwdGraceAuthNLimit: 5
+pwdInHistory: 5
+pwdLockout: TRUE
+pwdLockoutDuration: 300
+pwdCheckQuality: 1
+pwdMaxAge: 2592000
+pwdMaxFailure: 5
+pwdMinAge: 0
+pwdMinLength: 8
+pwdMustChange: TRUE
+pwdSafeModify: TRUE
+pwdReset: TRUE
+sn: default value
+
+dn: cn=low_security,ou=pwpolicies,dc=xiodi,dc=cn
+cn: low_security
+objectClass: pwdPolicy
+objectClass: person
+pwdAllowUserChange: TRUE
+pwdAttribute: userPassword
+pwdExpireWarning: 259200
+pwdFailureCountInterval: 0
+pwdGraceAuthNLimit: 5
+pwdInHistory: 5
+pwdLockout: TRUE
+pwdLockoutDuration: 300
+pwdCheckQuality: 1
+pwdMaxAge: 2592000
+pwdMaxFailure: 5
+pwdMinAge: 0
+pwdMinLength: 6
+pwdMustChange: TRUE
+pwdSafeModify: TRUE
+pwdReset: TRUE
+sn: low value
