@@ -15,4 +15,6 @@ olcSpSessionLog: 100
 
 # add index
 dn: olcDatabase={2}hdb,cn=config
+changetype: modify
+add: olcDbIndex
 olcDbIndex: entryCSN,entryUUID eq
