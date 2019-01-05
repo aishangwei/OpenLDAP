@@ -13,11 +13,11 @@ olcDisallows: bind_anon
 # TLS settings
 #
 olcTLSCACertificateFile: /etc/openldap/certs/cacert.pem
-olcTLSCertificateFile: /etc/openldap/certs/openldapcert2.pem
-olcTLSCertificateKeyFile: /etc/openldap/certs/openldapkey2.pem
+olcTLSCertificateFile: /etc/openldap/certs/openldapcert189.pem
+olcTLSCertificateKeyFile: /etc/openldap/certs/openldapkey189.pem
 olcLogLevel: stats
-olcServerID: 1 ldaps://c720227.xiodi.cn
-olcServerID: 2 ldaps://c720228.xiodi.cn
+olcServerID: 1 ldaps://c720189.xiodi.cn
+olcServerID: 2 ldaps://c720190.xiodi.cn
 #
 # Do not enable referrals until AFTER you have a working directory
 # service AND an understanding of referrals.
@@ -178,7 +178,7 @@ olcDbIndex: ou,cn,mail,surname,givenname eq,pres,sub
 olcDbIndex: entryCSN,entryUUID eq
 olcMirrorMode: on
 olcSyncRepl: rid=001
-  provider=ldaps://c720227.xiodi.cn:636/
+  provider=ldaps://c720189.xiodi.cn:636/
   bindmethod=simple
   binddn="cn=syncuser1,ou=Admin,dc=xiodi,dc=cn"
   credentials="xiodi.cn"
@@ -190,7 +190,7 @@ olcSyncRepl: rid=001
   attrs="*,+"
   interval=00:00:00:10
 olcSyncRepl: rid=002
-  provider=ldaps://c720228.xiodi.cn:636/
+  provider=ldaps://c720190.xiodi.cn:636/
   bindmethod=simple
   binddn="cn=syncuser1,ou=Admin,dc=xiodi,dc=cn"
   credentials="xiodi.cn"
