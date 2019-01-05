@@ -15,9 +15,9 @@ olcOverlay: syncprov
 dn: olcDatabase={2}hdb,cn=config
 olcDbIndex: entryCSN,entryUUID eq
 olcSyncRepl: rid=002
-  provider=ldaps://192.168.20.223:636/
+  provider=ldaps://192.168.20.189:636/
   bindmethod=simple
-  binddn="cn=xiodiadmin,dc=xiodi,dc=cn"
+  binddn="cn=syncuser1,ou=Admin,dc=xiodi,dc=cn"
   credentials=xiodi.cn
   searchbase="dc=xiodi,dc=cn"
   scope=sub
