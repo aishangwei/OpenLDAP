@@ -13,8 +13,8 @@ olcDisallows: bind_anon
 # TLS settings
 #
 olcTLSCACertificateFile: /etc/openldap/certs/cacert.pem
-olcTLSCertificateFile: /etc/openldap/certs/openldapcert.pem
-olcTLSCertificateKeyFile: /etc/openldap/certs/openldapkey.pem
+olcTLSCertificateFile: /etc/openldap/certs/openldapcert189.pem
+olcTLSCertificateKeyFile: /etc/openldap/certs/openldapkey189.pem
 olcLogLevel: stats
 #
 # Do not enable referrals until AFTER you have a working directory
@@ -177,7 +177,7 @@ olcDbIndex: ou,cn,mail,surname,givenname eq,pres,sub
 olcDbIndex: entryCSN,entryUUID eq
 olcMirrorMode: on
 olcSyncRepl: rid=001
-  provider=ldaps://c720228.xiodi.cn:636/
+  provider=ldaps://c7202190.xiodi.cn:636/
   bindmethod=simple
   binddn="cn=syncuser1,ou=Admin,dc=xiodi,dc=cn"
   credentials="xiodi.cn"
@@ -189,7 +189,7 @@ olcSyncRepl: rid=001
   attrs="*,+"
   interval=00:00:00:10
 
-dn: olcOverlay=syncprov,olcDatabase=hdb,cn=config
+dn: olcOverlay=syncprov,olcDatabase={2}hdb,cn=config
 objectClass: olcOverlayConfig
 objectClass: olcSyncProvConfig
 olcOverlay: syncprov
