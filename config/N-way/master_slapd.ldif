@@ -115,6 +115,7 @@ olcAccess: to attrs=userPassword,shadowLastChange
 olcAccess: to dn.subtree="dc=xiodi,dc=cn"
        by  dn="cn=xiodiadmin,dc=xiodi,dc=cn" write
        by  dn="cn=syncuser1,ou=Admin,dc=xiodi,dc=cn" read
+       by  dn="cn=clientsearch,ou=Admin,dc=xiodi,dc=cn" read
        by  group.exact="cn=ldapadmin,ou=Admin,dc=xiodi,dc=cn" write
        by * read
 olcAccess: to dn.subtree="" by * read
