@@ -115,8 +115,8 @@ olcAccess: to attrs=userPassword,shadowLastChange
 olcAccess: to dn.subtree="dc=xiodi,dc=cn"
        by  dn="cn=xiodiadmin,dc=xiodi,dc=cn" write
        by  dn="cn=syncuser1,ou=Admin,dc=xiodi,dc=cn" read
-       by  set="[cn=ldapadmin,ou=Admin,dc=xiodi,dc=cn]/memberUid & user/uid" write
-       by * none
+       by  group.exact="cn=ldapadmin,ou=Admin,dc=xiodi,dc=cn" write
+       by * read
 olcAccess: to dn.subtree="" by * read
 #
 # Sample global access control policy:
@@ -150,7 +150,7 @@ objectClass: olcDatabaseConfig
 olcDatabase: config
 olcAccess: to * 
      by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth" manage 
-     by set="[cn=configadmin,ou=Admin,dc=xiodi,dc=cn]/memberUid & user/uid" write     
+     by  group.exact="cn=ldapadmin,ou=Admin,dc=xiodi,dc=cn" write    
      by * none
 #
 # Server status monitoring
